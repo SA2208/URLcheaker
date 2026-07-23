@@ -197,6 +197,7 @@ Use a secret manager in production. Do not commit the key or signature workflow 
 - [Data card](docs/data-card.md)
 - [Model card](docs/model-card.md)
 - [Test strategy](docs/testing.md)
+- [Verification report](docs/verification.md)
 - [Deployment and rollback](docs/deployment.md)
 - [SOC playbook](docs/soc-playbook.md)
 - [API examples](docs/api.md)
