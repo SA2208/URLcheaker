@@ -1,0 +1,9 @@
+training:
+  dataset: data/sample_urls.csv
+  output: ml/models/urlchecker_pycaret
+  seed: 42
+  holdout_source: null
+
+decision_policy:
+  benign_threshold: 0.20
+  malicious_threshold: 0.80

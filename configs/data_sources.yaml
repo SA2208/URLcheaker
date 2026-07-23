@@ -1,0 +1,23 @@
+# Data downloads are deliberately disabled. Review each provider's current terms, authentication,
+# attribution, redistribution, and retention rules before enabling collection.
+sources:
+  - name: urlhaus
+    enabled: false
+    purpose: malware_urls
+    url: "https://urlhaus.abuse.ch/downloads/"
+    license_review_required: true
+  - name: phishtank
+    enabled: false
+    purpose: phishing_urls
+    url: "https://phishtank.org/developer_info.php"
+    license_review_required: true
+  - name: openphish
+    enabled: false
+    purpose: phishing_urls
+    url: "https://openphish.com/phishing_feeds.html"
+    license_review_required: true
+  - name: tranco
+    enabled: false
+    purpose: benign_domain_candidates
+    url: "https://tranco-list.eu/"
+    license_review_required: true

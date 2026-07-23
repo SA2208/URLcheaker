@@ -1,0 +1,16 @@
+[
+  {
+    "url": "http://known-malware.test/dropper.exe",
+    "source": "demo-urlhaus",
+    "source_record_id": "demo-0001",
+    "threat_type": "malware",
+    "first_seen": "2026-07-01T00:00:00Z"
+  },
+  {
+    "url": "https://known-phish.test/account/verify",
+    "source": "demo-phishtank",
+    "source_record_id": "demo-0002",
+    "threat_type": "phishing",
+    "first_seen": "2026-07-02T00:00:00Z"
+  }
+]

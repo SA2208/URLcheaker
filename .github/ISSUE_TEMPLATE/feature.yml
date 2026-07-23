@@ -1,0 +1,24 @@
+name: Feature request
+description: Plan a product or engineering change.
+title: "[Feature]: "
+labels: ["type:feature"]
+body:
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: State the user or engineering outcome.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Provide measurable completion conditions.
+    validations:
+      required: true
+  - type: textarea
+    id: security
+    attributes:
+      label: Security and data considerations
+      description: Identify trust-boundary, privacy, dataset, or model effects.

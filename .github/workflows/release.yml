@@ -1,0 +1,35 @@
+name: Release Validation
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: read
+jobs:
+  release-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - run: python -m pip install -e '.[dev]'
+      - run: pytest --cov=src/urlchecker --cov-fail-under=80
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm install --prefix web
+      - run: npm test --prefix web -- --run
+      - run: npm run build --prefix web
+      - run: docker build -f Dockerfile.api -t urlcheaker-api:${GITHUB_REF_NAME} .
+      - run: docker build -f web/Dockerfile -t urlcheaker-web:${GITHUB_REF_NAME} web
+      - run: |
+          docker save urlcheaker-api:${GITHUB_REF_NAME} urlcheaker-web:${GITHUB_REF_NAME} \
+            | gzip > urlcheaker-images-${GITHUB_REF_NAME}.tar.gz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: urlcheaker-${{ github.ref_name }}
+          path: |
+            web/dist
+            urlcheaker-images-${{ github.ref_name }}.tar.gz
+            docs

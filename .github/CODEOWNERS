@@ -1,0 +1,6 @@
+* @repository-owner
+/src/urlchecker/model_service.py @repository-owner
+/src/urlchecker/security.py @repository-owner
+/ml/ @repository-owner
+/.github/workflows/ @repository-owner
+/infrastructure/ @repository-owner

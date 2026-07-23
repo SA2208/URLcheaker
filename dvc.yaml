@@ -1,0 +1,31 @@
+stages:
+  validate_data:
+    cmd: >-
+      python ml/pipelines/validate_dataset.py
+      --dataset ${training.dataset}
+      > ml/reports/data-validation.txt
+    deps:
+      - ${training.dataset}
+      - ml/pipelines/validate_dataset.py
+      - src/urlchecker/url_normalizer.py
+    outs:
+      - ml/reports/data-validation.txt
+
+  train:
+    cmd: >-
+      python ml/pipelines/train_pycaret.py
+      --dataset ${training.dataset}
+      --output ${training.output}
+      --seed ${training.seed}
+    deps:
+      - ${training.dataset}
+      - ml/pipelines/train_pycaret.py
+      - src/urlchecker/features.py
+      - src/urlchecker/url_normalizer.py
+    params:
+      - training.dataset
+      - training.output
+      - training.seed
+    outs:
+      - ml/models/urlchecker_pycaret.pkl
+      - ml/models/urlchecker_pycaret.metadata.json

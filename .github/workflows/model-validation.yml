@@ -1,0 +1,21 @@
+name: Model and Data Validation
+on:
+  pull_request:
+    paths:
+      - 'data/**'
+      - 'ml/**'
+      - 'src/urlchecker/features.py'
+      - 'src/urlchecker/url_normalizer.py'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -e .
+      - run: python ml/pipelines/validate_dataset.py --dataset data/sample_urls.csv
+      - run: pytest tests/unit/test_features.py tests/unit/test_url_normalizer.py
