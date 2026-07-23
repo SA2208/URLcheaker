@@ -26,7 +26,7 @@ jobs:
       - run: |
           docker save urlcheaker-api:${GITHUB_REF_NAME} urlcheaker-web:${GITHUB_REF_NAME} \
             | gzip > urlcheaker-images-${GITHUB_REF_NAME}.tar.gz
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: urlcheaker-${{ github.ref_name }}
           path: |
